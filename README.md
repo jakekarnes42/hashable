@@ -62,9 +62,11 @@ is accessing them.
 
 ## TODO
 These are known issues with this POC implementation which could be improved
+
 1. **More concurrency safety:** The service doesn't currently consider the scenario of multiple, concurrent requests.
 There would be race conditions if there are requests for content the is simultaneously being uploaded. There may even 
 be some consideration of race conditions when writing to disk.
+
 2. **Performance tuning:** The service has not been optimized for performance. Some ideas would be:
     * Checking GET requests are 512 bits in length. Likely quicker than checking if the file exists on disk.
     * Storing previous hashes in a data structure that allows quick lookup. Maybe a bloom filter or database.
