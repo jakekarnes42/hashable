@@ -1,5 +1,17 @@
 # Hashable
-This is a webservice which stores and serves content based on the content's hash.
+This is a webservice which stores and serves content based on the content's hash. The "big picture" idea is that such a service could store _all of the world's content._ 
+
+Instead of storing files and their content locally, the end user would instead upload the content and store its hash. 
+Afterwards, the content could be fetched only as needed using the hash. Sharing content of arbitrary size would become 
+trivial, since it's so easy to share the 512 bit hash. Effectively, all content is compressed to 512 bits and pulled 
+from the service when needed.
+
+With a cryptographically strong hash of 512 bits, there should be no concern of collisions. If the uploaded content 
+has the same hash, then it must be the same content. It doesn't matter who uploaded the content since all the bits are 
+the same. It should also be practically impossible to guess a valid hash without knowing the content.
+
+If everyone were to use such a system, all unique content would only need to be stored once. 
+
 
 **Disclaimer:** This is only a proof of concept.
 
@@ -26,21 +38,7 @@ This uploads the content "Hello world!" to the server. The server returns:
 This uploads the content "Hello world!" to the server. The server returns: 
 `Hello world!`
 
-## Discussion
-The "big picture" idea is that such a service could store _all of the world's content._ 
-
-Instead of storing files and their content locally, the end user would instead upload the content and store its hash. 
-Afterwards, the content could be fetched only as needed using the hash. Sharing content of arbitrary size would become 
-trivial, since it's so easy to share the 512 bit hash. Effectively, all content is compressed to 512 bits and pulled 
-from the service when needed.
-
-With a cryptographically strong hash of 512 bits, there should be no concern of collisions. If the uploaded content 
-has the same hash, then it must be the same content. It doesn't matter who uploaded the content since all the bits are 
-the same. It should also be practically impossible to guess a valid hash without knowing the content.
-
-If everyone were to use such a system, all unique content would only need to be stored once. 
-
-### Practical considerations
+## Practical considerations
 No authentication is proposed in this system. The content (and their hashes) don't belong to any particular user. The
 content is only a series of bits, accessible by anyone who happens to know the correct hash. There isn't a way to revoke
 access to some particular content. 
